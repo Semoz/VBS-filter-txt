@@ -10,15 +10,18 @@ file.close
 set fs=Nothing
 
 Sub ProcessStr(txt)
-If RegExpTest("\d{6,100}",txt) = false Then
 If ubound(split(txt," ")) = 0 Then
 content=txt
 For i = 1 To Len(content)
    content=ReplaceTest(content,"[^\d\.]","")
 Next
-if len(content)=6 then
-Call Write2file(txt)
+If ubound(split(content,".")) >0 Then
+   MsgBox(content)
+   content=ReplaceTest(content,"\.","")
+   MsgBox(content)
 End If
+if len(content)=6 Then
+Call Write2file(txt)
 End If
 End If
 End Sub
